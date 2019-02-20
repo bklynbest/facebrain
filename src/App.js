@@ -57,7 +57,7 @@ class App extends Component {
   
   
   onButtonSubmit = () => {
-    this.setState=({imageUrl: this.state.input})
+    this.setState({imageUrl: this.state.input})
       app.models
         .predict(
           Clarifai.FACE_DETECT_MODEL, this.state.input)
@@ -65,6 +65,9 @@ class App extends Component {
           .catch(err => console.log(err));
   }
   
+  onRouteChange = () => {
+    this.setState({route: 'home'})
+  }
   
   onInputChange = (event) => {
     this.setState({input: event.target.value});
@@ -78,7 +81,7 @@ class App extends Component {
         />
         <Navigation />
         { this.state.route === 'signin' 
-        ?<SignIn />
+        ?<SignIn onRouteChange = {this.onRouteChange}/>
         :<div>
           <Logo />
           <Rank />
